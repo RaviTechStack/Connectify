@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'yourPost.css' %}?{% now 'U' %}"> 
+<style>
+    .cmt{
+        width: 100%;
+        margin: 6px;
+        background-color: yellow;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div>
+{% for comment in comments %}
+
+<div class="cmt">
+    <p>{{comment.comment_content}}</p>
+    {% for reply in comment.comment_set.all %}
+    <div class="reply">
+        <p>{{reply.comment_content}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}

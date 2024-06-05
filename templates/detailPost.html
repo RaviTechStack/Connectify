@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'profile.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %}
+
+<section class="fullImg center flex-col">
+    <h3 class="cross">X</h3>
+    <img src="{{post.postContent.url}}" alt="" id="showImg">
+    <div class="opret-btn"><span id ="like" data-id="{{post.postId}}"> {% if isliked %}&#9825; {% else %} &#10084; {% endif %}</span><span><span id="likecount">{{likeCount}}</span>
+            likes</span><button class="cmtBtn">Comment</button></div>
+    <div class="commentSection">
+        <h2 class="hide" style="color: black; position: relative; left: 98%;">X</h2>
+        <div class="comment-inpt">
+            <form action="/comment" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Write Your Comment" name="content">
+                <input type="hidden" name="postId" id="cmtPostId" value="{{post.postId}}">
+                <input type="hidden" name="parent" value="">
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        <div class="show-comment flex-col">
+            {% for cmt in cmts %}
+            <div class="single-coment flex">
+                <div class="imgPart center"><img src="media/post/done.jpg" alt=""></div>
+                <div class="detailPart flex-col">
+                    <div class="upperPart flex"><span>{{cmt.comment_user.first_name}}</span><span>date</span></div>
+                    <p>{{cmt.comment_content}}</p>
+                    <button class="replybtn">reply</button>
+                    <div class="reply">
+                        <div class="comment-inpt" style="padding: .5rem 0;">
+                            <form action="/comment" method="post">
+                                {% csrf_token %}
+                                {{post.postId}}
+                                <input type="text" placeholder="Write Your Comment" name="content">
+                                <input type="hidden" name="postId" id="cmtPostId" value="{{post.postId}}">
+                                <input type="hidden" name="parent" value="{{cmt.id}}">
+                                <button type="submit">Post</button>
+                            </form>
+                        </div>
+                        {% for reply in cmt.comment_set.all %}
+                        <div class="single-coment flex">
+                            <div class="imgPart center"><img src="media/post/done.jpg" alt=""></div>
+                            <div class="detailPart flex-col">
+                                <div class="upperPart flex"><span>{{reply.comment_user}}</span><span>date</span></div>
+                                <p>{{reply.comment_content}}</p>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+</section>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    const csrftoken = "{{ csrf_token }}"
+    let comment_open = "{{open_comment|yesno:'true,false'}}"
+    console.log(comment_open)
+    
+</script>
+<script src="{% static 'js/detailPost.js' %}?{% now 'U' %}"></script>
+
+{% endblock %}

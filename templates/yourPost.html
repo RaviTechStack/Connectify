@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'yourPost.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %}
+<main class="center">
+    <div class="postContainer flex-col">
+        {% for post in allPost %}
+        <div class="post flex-col center">
+            <div class="postUser center"><span>{{post.postUser}}</span><div class="edit center"><span></span><span></span><span></span></div> <div class="edit-menu"><ul>
+                <li class="editItem"><a href="editPost/{{post.postId}}">Edit</a></li>
+                <li class="editItem">Share</li>
+                <li class="editItem"><a href="deletePost/{{post.postId}}">Delete</a></li>
+            </ul></div></div>
+            <div class="postImg">
+                <img src="{{post.postContent.url}}" alt="">
+            </div>
+            <div class="postOption">
+                <details>
+                    <summary>Caption</summary>
+                    <p>{{post.postCaption}}</p>
+                </details>
+            </div>
+           
+        </div>
+        {% endfor %}
+
+    </div>
+</main>
+
+{% endblock %}
+
+{% block script %} <script src="{% static 'js/yourPost.js' %}?{% now 'U' %}"></script> {% endblock %}

@@ -1,0 +1,31 @@
+
+
+.formsignupContainer{
+    width: 30%;
+    height: min-content;
+    text-align: center;
+    background-color: #f4f4f4;
+    gap: 1rem;
+    overflow: scroll;
+    box-shadow: 2px 2px 6px grey, -2px -2px 6px grey;
+    padding: .6rem .4rem;
+}
+.nameContainer{
+    gap: .8rem;
+}
+.formsignupContainer::-webkit-scrollbar{
+    display: none;
+}
+.heading{
+    height:fit-content;
+}
+
+@media (max-width: 1150px){
+    
+    
+    .formsignupContainer{
+        width: 95%;
+        margin-top: 5rem;
+    }
+    
+}

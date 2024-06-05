@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'profile.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %}
+<section class="profileContainer">
+    <header class="flex">
+        <div class="profileDetail flex-col center">
+            <div class="profile-img"></div>
+            <div class="profileName flex-col center">
+                <h3>{{userDetail.username}} </h3>
+                <h2>{{userDetail.first_name}} {{userDetail.last_name}}</h2>
+                <button id="followBtn" data-user-id="{{userDetail.id}}">
+                    {% if userDetail in userAllFollowers and not isfollow %}
+                    follow Back
+                    {% else %}
+                        {% if isfollow %}
+                        UnFollow
+                        {% else %}
+                        Follow
+                        {% endif %}
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+        <div class="profileFollowDetail flex">
+            <div class="follow-detail flex-col center"><span class="num">{{allPost|length}}</span><span
+                    class="text">Post</span></div>
+            <div class="follow-detail flex-col center"><span class="num" id="follower">{{Followers.count}}</span><span
+                    class="text">Followers</span></div>
+            <div class="follow-detail flex-col center"><span class="num">{{ Following.count }}</span><span
+                    class="text">Following</span></div>
+
+        </div>
+    </header>
+    <section class="feed">
+        {% if allPost %}
+        {% for post in allPost %}
+        <a href="detailPost/{{post.id}}">
+            <div class="singleFeed">
+
+                <div class="post flex-col center white" style="width: 100%; height: 100%; padding: 0;">
+                    <!-- <div class="postUser white">bhltauser</div> -->
+                    <div class="postImg white" style="width: 100%; height:100%; padding: 0;">
+                        <img src="{{post.url}}" alt="" class="post-img" data-post-id="{{post.id}}"
+                            data-isliked="{{post.isliked}}" data-number="{{post.noOfLike}}"
+                            style="width: 100%; height: 100%; padding: 0;  border-radius: 0;">
+                    </div>
+
+                </div>
+
+
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <p>User hasn't posted anything yet</p>
+        {% endif %}
+
+    </section>
+    
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    const csrfToken = "{{ csrf_token }}"
+</script>
+<script src="{% static 'js/profile.js' %}?{% now 'U' %}"></script>
+
+{% endblock %}

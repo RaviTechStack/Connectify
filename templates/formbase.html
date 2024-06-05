@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% block style %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+</head>
+
+<body class="flex-col">
+    <h1>.Vichar</h1>
+    
+
+        {% block body %} {% endblock %}
+</body>
+
+</html>

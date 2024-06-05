@@ -1,0 +1,26 @@
+{% extends 'formbase.html' %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'login.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %} 
+<section class="formContainer flex-col">
+<h2 class="heading">Login</h2>
+        <form action="" method="post" class="flex-col">
+            {% csrf_token %}
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <a href="" class="passwordReset">Forgot Password?</a>
+            </div>
+            <button type="submit">Submit</button>
+
+        </form>
+        <div class="signup">
+            <p>Don't have an account? <a href="signup">Sign UP</a></p>
+        </div>
+    </section>
+        {% endblock %}
+        

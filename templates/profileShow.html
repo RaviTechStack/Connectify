@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'searchUser.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %}
+
+<main class="show-followers flex-col">
+    <div class="heading center">
+        <h3 class="{% if not showfollowing %}shadow{% endif %}" id="followers">Followers ({{followers.count}})</h3>
+        <h3 class="{% if showfollowing %}shadow hella{% endif %}" id="Following">Following ({{followings|length}})</h3>
+    </div>
+    <div class="list flex-col">
+        {% if showfollowing %}
+        {% for following in followings %}
+        <div class="singleuser flex">
+            <div class="profileImage center"><img src="media/post/done.jpg" alt=""></div>
+            <div class="userDetail flex"><a href="userprofile/{{following.id}}" class="flex"><span
+                        class="userName">{{following.username}}</span></a><span
+                        class="unfollow" id="{{following.id}}">Unfollow</span></div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% for follower in followers %}
+        
+        <div class="singleuser flex">
+            <div class="profileImage center"><img src="media/post/done.jpg" alt=""></div>
+            <div class="userDetail flex"><a href="userprofile/{{follower.id}}" class="flex"><span
+                        class="userName">{{follower.username}}</span></a><span class="followBack" id="{{follower.id}}">{% if follower in followings %}
+                            Unfollow
+                            {% else %}
+                            followBack
+                            {% endif %}
+                        </span></div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script>
+    let following = document.querySelector("#Following")
+    following.addEventListener("click", () => {
+        window.location = "/friends/{{request.user.id}}?following=true"
+    })
+    let follwers = document.querySelector("#followers")
+    follwers.addEventListener("click", () => {
+        window.location = "/friends/{{request.user.id}}"
+    })
+
+    // HANDLING FOLLOW BACK FUNCTIONALTIY
+    let followBackBtn = document.querySelectorAll(".followBack")
+    followBackBtn.forEach((elem) => {
+        elem.addEventListener("click", () => {
+
+            const addFollow = (userId) => {
+                fetch("/follow", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-CSRFToken": "{{csrf_token}}"
+                    },
+                    body: `userId=${userId}`
+
+                }).then(res => res.json()).then(val => {
+                    console.log(val)
+                    if(val.follow){
+                        elem.innerHTML = "Follow Back"
+                        elem.style.backgroundColor = "blue"
+                        
+                    }
+                    else{
+                        elem.innerHTML = "Unfollow"
+                        elem.style.backgroundColor = "red"
+                    }
+                    
+                }).catch(err => console.log(err))
+            }
+            addFollow(elem.id)
+        })
+    })
+
+
+// HANDLING UNFOLLOW AND FOLLOW FEATURE IN FOLLOWING SECTION
+
+let unfollowBtn = document.querySelectorAll(".unfollow")
+unfollowBtn.forEach((elem) => {
+        elem.addEventListener("click", () => {
+
+            const addFollow = (userId) => {
+                fetch("/follow", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-CSRFToken": "{{csrf_token}}"
+                    },
+                    body: `userId=${userId}`
+
+                }).then(res => res.json()).then(val => {
+                    console.log(val)
+                    if(val.follow){
+                        elem.innerHTML = "Follow"
+                        elem.style.backgroundColor = "blue"
+                    }
+                    else{
+                        elem.innerHTML = "Unfollow"
+                        elem.style.backgroundColor = "red"
+                    }
+                    
+                }).catch(err => console.log(err))
+            }
+            addFollow(elem.id)
+        })
+    })
+</script>
+{% endblock %}

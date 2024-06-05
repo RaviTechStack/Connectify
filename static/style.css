@@ -1,0 +1,311 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flex{
+    display: flex;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+.grid{
+    display: grid;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.border{
+    border-left:  5px solid grey;
+}
+a{
+    color: initial;
+    text-decoration: none;
+}
+
+/* NORMAL CLASSES */
+
+nav{
+    width: 100%;
+    height: 8vh;
+    background: linear-gradient(rgb(255, 128, 149), purple);
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .95rem;
+}
+
+.logo{
+    width: 18%;
+    font-weight: 500;
+    font-size: 1.7rem;
+
+    text-align: center;
+}
+.search{
+    width: 40%;
+    height: 100%;
+}
+.search-form{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.padd{
+    height: 85%;
+    padding: .4rem .2rem;
+    border: none;
+    outline: none;
+}
+.search-form input{
+    width: 90%;
+    font-size: 1rem;
+    border-radius: 5px 0 0 5px;
+}
+.search-form button{
+    width: 10%;
+    border-radius: 0 5px 5px 0;
+}
+.sessionDetail{
+    width: 18%;
+    height: 100%;
+    align-items: center;
+}
+.sessionDetail a{
+    padding: .4rem .8rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+}
+
+.mainMenu{
+    /* display: none; */
+    width: 20%;
+    height: 91vh;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 1px 1px 12px grey;
+}
+.color{
+    color: blue;
+}
+.responsiveMenu{
+    display: none;
+    width: 10%;
+    height: 87.5vh;
+    
+}
+.menuItems{
+    width: 100%;
+    height: 80%;
+    box-shadow: 1px 1px 12px grey;
+    background-color: rgb(243, 243, 243);
+    border-radius: 4px;
+    justify-content: space-around;
+    padding: 0 .75rem;
+    border-radius: 0 25px 25px 0;
+
+}
+.menuItems i {
+    font-size: 2.5rem;
+}
+
+#profile{
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    gap: .5rem;
+    
+}
+.profile-pic{
+    width: 5rem;
+    height: 5rem;
+    background-color: aqua;
+    border-radius: 50%;
+    margin: 0;
+}
+.lightFont{
+    font-weight: 400;
+}
+#username{
+    font-size: 1.03rem;
+    color: grey;
+}
+#profile button{
+    padding: .3rem .6rem;
+}
+.option{
+    width: 100%;
+    height: 30%;
+    gap: .3rem;
+}
+.option h3{
+    padding: .5rem .2rem;
+    padding-left: 1rem;
+    width: 100%;
+    font-weight: 400;
+    background-color: rgba(206, 206, 206, 0.61);
+}
+#home{
+    text-decoration: none;
+    color: initial;
+}
+.logout{
+    height: 30%;
+    width: 100%;
+}
+.logout button{
+    width: 100%;
+    background-color: rgba(206, 206, 206, 0.61);
+    padding: .6rem .4rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+}
+
+main{
+    width: 80%;
+    height: 92vh;
+    overflow: scroll;
+}
+.postContainer{
+    width: 80%;
+    height: 100%;
+    gap: 1rem;
+    padding-top: 2rem;
+    
+}
+.single-post-container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: black;
+    gap: 1rem;
+}
+.post{
+    width: 50%;
+    height: fit-content;
+    background-color: rgb(232, 232, 232);
+    padding: .75rem;
+    box-shadow: 1px 1px 3px grey, -1px -1px 3px grey;
+    margin: 0 auto;
+    position: relative;
+    
+}
+.postUser{
+    justify-content: space-between;
+
+    padding: .4rem .4rem;
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    border-radius: 10px 10px 0 0;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgb(66, 66, 66);
+}
+
+.postImg{
+    width: 100%;
+    /* height: fit-content; */
+}
+
+.postImg img{
+    width: 100%;
+    /* height: auto; */
+    margin: 0;
+    border-radius: 10px;
+}
+
+.postOption{
+    width: 100%;
+    height: min-content;
+    padding: .5rem .4rem;
+    background-color: rgb(236, 236, 236);
+    position: relative;
+    overflow: hidden;
+}
+.postOprate{
+    padding: .5rem 0;
+}
+.like{
+    padding: .5rem .65rem;
+    background-color: transparent;
+    border-radius: 5px 0 0 5px;
+    font-weight: 600;
+}
+.commentView{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: white;
+}
+.white{
+    background-color: white;
+}
+.likecount{
+    border: 2px solid black;
+    border-left: none;
+    padding: .54rem .65rem;
+    background-color: transparent;
+    border-radius: 0 5px 5px 0;
+    font-weight: 600;
+}
+
+
+@media (max-width: 1150px){
+    html{
+        font-size: 66.5%;
+    }
+    nav{
+        height: 12vh;
+        flex-direction: column;
+        padding-bottom: .5rem;
+    }
+    .logo{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+    }
+    .search{
+        width: 98%;
+        height: 50%;
+    }
+    .sessionDetail{
+        display: none;
+    }
+    .mainMenu{
+        display: none;
+    }
+    .responsiveMenu{
+        display: flex;
+        border-radius: 0 5px 5px 0;
+    }
+    main{
+        width: 90%;
+        height: 87.5vh;
+        overflow: scroll;
+    }
+    .postContainer{
+        width: 100%;
+    }
+    .post{
+        width: 80%;
+    }
+    .search-form input{
+        width: 80%;
+    }
+    .search-form button{
+        width: 20%;
+    }
+}

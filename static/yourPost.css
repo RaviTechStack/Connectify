@@ -1,0 +1,39 @@
+.edit{
+    
+    padding: .8rem;
+    border-radius: .4rem;
+    }
+.edit span{
+    height: .25rem;
+    width: .25rem;
+    background-color: black;
+    margin: 0 1px;
+    border-radius: 50%;
+    }
+.postUser{
+    position: relative;
+}
+.edit-menu{
+    box-shadow: 2px 2px 4px grey, -2px -2px 4px grey;
+    background-color: white;
+    padding: .4rem .25rem;
+    height: fit-content;
+    width: min-content;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    display: none;
+}
+.edit-menu ul{
+    padding: .1rem .3rem;
+    cursor: pointer;
+}
+.edit-menu ul li{
+    list-style: none;
+    padding: .1rem;
+    width: 100%;
+}
+.edit-menu ul li a{
+    text-decoration: none;
+    color: initial;
+}

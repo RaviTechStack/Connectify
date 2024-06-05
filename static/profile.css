@@ -1,0 +1,266 @@
+
+.profileContainer{
+    height: 91vh;
+    width: 100%;
+    padding: .8rem;
+}
+header{
+    height: 40vh;
+    width: 100%;
+    background-color: rgb(244, 244, 244);
+}
+.profileDetail{
+    width: 40%;
+    height: 100%;
+    padding: .4rem .1rem;
+    gap: .3rem;
+}
+.profile-img{
+    width: 6rem;
+    height: 6rem;
+    background-color: aqua;
+    border-radius: 50%;
+}
+.profileName{
+    width: 100%;
+    height: fit-content;
+    padding: .4rem .2rem;
+    gap: .1rem;
+    text-align: center;
+}
+.profileName h3{
+    font-weight: 500;
+    font-size: 1.1rem;
+
+}
+.profileName h2{
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: gray;
+}
+.profileName p{
+    width: 80%;
+    color: rgb(41, 41, 41);
+}
+.profileName button{
+    width: 60%;
+    border: none;
+    outline: none;
+    margin-top: .9rem;
+    padding: .4rem .3rem;
+    background-color: blue;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.profileFollowDetail{
+    width: 60%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 2.5rem;
+    
+}
+.follow-detail{
+    width: 15%;
+    height: 40%;
+    gap: .1rem;
+}
+.num{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+.text{
+    font-size: 1.4rem;
+    color: grey;
+    font-weight: 400;
+}
+
+.feed{
+    display: grid;
+    overflow-y: scroll;
+    height: 51vh;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .6rem;
+    padding: .4rem .6rem;
+}
+.singleFeed{
+    width: 100%;
+    height: 100%;
+    padding: 0!important;
+
+}
+.post{
+    padding: 0!important;  
+}
+.singleFeed img{
+    width: 100%;
+    height: 100%;
+    padding: .6rem;
+    background-color: rgb(237, 237, 237);
+}
+.fullImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.331);
+    transform: scale(1);
+    transition: all .2s linear;
+    overflow: hidden;
+}
+
+.fullImg img{
+    height: 95%;
+}
+.cross{
+    position: absolute;
+    top: .8rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+}
+.opret-btn{
+    position: absolute;
+    bottom: 1rem;
+    right: 0;
+    width: 100%;
+    padding: .2rem;
+    padding-left: .8rem;
+
+}
+.opret-btn #like{
+    font-size: 2.9rem;
+    margin: 0 .1rem;
+}
+
+.opret-btn button{
+    padding: .4rem .3rem;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    font-weight: 600;
+    color: white;
+    border: 1px solid black;
+    margin: 0 1.4rem;
+}
+
+
+.commentSection{
+    width: 100%;
+    height: 65vh;
+    background-color: rgb(233, 233, 233);
+    position: absolute;
+    top: 35vh;
+    transform: translateY(65vh);
+    margin: auto;
+    transition: all .2s linear;
+    z-index: 1000;
+}
+.comment-inpt{
+    width: 100%;
+    padding: .6rem 1rem;
+    background-color: white;
+}
+.comment-inpt input{
+    height: 100%;
+    width: 60%;
+    padding: .5rem .4rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.comment-inpt button{
+    padding: .4rem .6rem;
+    background-color: blue;
+    display: block;
+    color: white;
+    margin-top: .5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+.show-comment{
+    height: 80%;
+    width: 100%;
+    overflow: scroll;
+    gap: .7rem;
+    padding-bottom: 1.7rem;
+}
+.show-comment::-webkit-scrollbar{
+    display: none;
+}
+.single-coment{
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    padding: .25rem .4rem;
+}
+.imgPart{
+    width: 20%;
+    height: 14vh;
+}
+.imgPart img{
+    width: 30%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.detailPart{
+   gap: .35rem;
+   width: 100%;
+   height: 100%;
+}
+.upperPart{
+    width: 100%;
+    gap: 1.5rem;
+    color: grey;
+    font-size: 1.2rem;
+}
+
+.reply{
+    display: none;
+    transition: all .5s linear;
+}
+.replybtn{
+    width: 5%;
+    padding: .3rem .2rem;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    outline: none;
+    border: none;
+}
+
+@media (max-width: 1150px){
+    header{
+        flex-direction: column;
+    }
+    .profileDetail{
+        width: 90%;
+        height: 50%;
+    }
+    .profileFollowDetail{
+        width: 90%;
+        height: 50%;
+    }
+    .profileName h3{
+        font-size: 1.5rem;
+    }
+    .profileName p{
+        width: 90%;
+    }
+    .feed{
+        grid-template-columns: repeat(3, 1fr);
+        height: 44vh;
+    }
+    .fullImg img{
+        width: 80%;
+        height: fit-content;
+    }
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'editPost.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %}
+<main id="formContainer" class="center">
+    <form action="" method="post" class="form center flex-col" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="img center flex-col">
+            <div class="imageChange"><img src="{{oldPost.postContent.url}}" alt="" id="changeImg"></div>
+            <label for="newImg">Change Image</label>
+            <input type="file" name="changedImage" id="newImg">
+        </div>
+        <div class="caption center"> <textarea name="caption" id="caption" cols="30" rows="10">{{oldPost.postCaption}}</textarea></div>
+        <button type="submit" id="submitButton">Submit</button>
+    </form>
+</main>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+let inpt = document.querySelector("#newImg")
+let showImg = document.querySelector("#changeImg")
+
+inpt.addEventListener("change", ()=>{
+    let imgurl = URL.createObjectURL(inpt.files[0])
+    showImg.src = imgurl
+})
+</script>
+
+{% endblock %}

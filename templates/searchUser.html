@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'searchUser.css' %}?{% now 'U' %}"> {% endblock %}
+{% block body %}
+<section class="usersList flex-col">
+    {% if users %}
+    {% for user in users %}
+    
+        <div class="user flex">
+
+            <div class="profileImg"></div>
+            <div class="names">
+                <a href="userprofile/{{user.id}}" id="userLink"><h3> {{user.username}} </h3></a>
+                <h4> {{user.first_name}} {{user.last_name}} </h4>
+            </div>
+
+        </div>
+    
+    {% endfor %}
+    {% else %}
+    <h2>No user found with this name</h2>
+    {% endif %}
+
+</section>
+
+
+
+{% endblock %}

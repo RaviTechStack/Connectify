@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'post.css' %}?{% now 'U' %}">
+{% endblock %}
+
+{% block body %}
+<main class="createPost">
+    <form action="/post" class="flex-col" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="post" class="postButton yellow">Create New post</label>
+        <input type="file" name="content" id="post">
+        <div class="preview center"><img src="" alt="No image selected" id="imgdiv"></div>
+        <div class="caption"><textarea name="caption" id="caption" cols="30" rows="10" placeholder="Caption...."></textarea></div>
+        <button class="postButton blue" type="submit">POST</button>
+       
+    </form>
+</main>
+
+{% endblock %}
+
+{% block script %} <script src="{% static 'js/post.js' %}?{% now 'U' %}"></script> {% endblock %}

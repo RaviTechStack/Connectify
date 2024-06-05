@@ -1,0 +1,48 @@
+{% extends "formbase.html" %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'login.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'signup.css' %}?{% now 'U' %}"> {% endblock %}
+
+{% block body %}
+<section class="formsignupContainer flex-col">
+<h2 class="heading">SignUp</h2>
+        <form action="" method="post" class="flex-col">
+            {% csrf_token %}
+            <div class="flex nameContainer">
+                <div>
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" required>
+                </div>
+                <div>
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" required>
+                </div>
+            </div>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="phone">Phone</label>
+                <input type="text" id="Phone" name="phone" required>
+            </div>
+            <div>
+                <label for="password1">Create Password</label>
+                <input type="password" id="password1" name="password1" required>
+            </div>
+            <div>
+                <label for="password"> Confirm Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Submit</button>
+
+        </form>
+        <div class="signup">
+            <p>Already have an account? <a href="login">Login</a></p>
+        </div>
+    </section>
+        {% endblock %}

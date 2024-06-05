@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<main class="center">
+    <div class="postContainer flex-col">
+        {% if followed_person_post %}
+        {% for post in followed_person_post %}
+            <div class="post flex-col center">
+                <div class="postUser"><a href="userprofile/{{post.postUser.id}}">{{post.postUser}}</a></div>
+                <div class="postImg">
+                    <img src="{{post.postContent.url}}" alt="">
+                </div>
+                <div class="postOption">
+                    <details>
+                        <summary>Caption</summary>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, eligendi!</p>
+                    </details>
+                    <div class="postOprate">
+                        <button class="like" data-id="{{post.postId}}">{% if user in post.postLike.all %} &#10084; {% else %} &#9825; {% endif %}</button><span class="like likecount">{{post.postLike.all.count}}</span>
+                        <a href="detailPost/{{post.postId}}?comment-open=true"><button class="like">Comment</button></a>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="commentSection">
+                <h2 class="hide" style="color: black; position: relative; left: 94%;">X</h2>
+                <div class="comment-inpt">
+                    <form action="/comment" method="post">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Write Your Comment" name="content">
+                        <input type="hidden" name="postId" id="cmtPostId" value="{{post.postId}}">
+                        <input type="hidden" name="parent" value="">
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+                <div class="show-comment flex-col">
+                    <div class="single-coment flex">
+                        <div class="imgPart center"><img src="media/post/done.jpg" alt=""></div>
+                        <div class="detailPart flex-col">
+                            <div class="upperPart flex"><span>shubham</span><span>date</span></div>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, soluta.</p>
+                            <button class="replybtn">reply</button>
+                            <div class="reply">
+                                <div class="comment-inpt" style="padding: .5rem 0;">
+                                    <form action="/comment">
+                                        <input type="text" placeholder="Write Your Comment">
+                                        <button type="submit">Post</button>
+                                    </form>
+                                </div>
+
+                                <div class="single-coment flex">
+                                    <div class="imgPart center"><img src="media/post/done.jpg" alt=""></div>
+                                    <div class="detailPart flex-col">
+                                        <div class="upperPart flex"><span>shubham</span><span>date</span></div>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum, odio.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div> -->
+        {% endfor %}
+        {% else %}
+        <h2>Follow Users to see their post</h2>
+
+
+
+        {% endif %}
+    </div>
+</main>
+{% endblock %}
+{% block script %}
+<script>
+
+    let likeCount = document.querySelectorAll(".likecount")
+    let likeOpt = document.querySelectorAll(".like")
+    likeOpt.forEach((elem, index) => {
+        elem.addEventListener("click", () => {
+            let postId = elem.getAttribute("data-id")
+            console.log(postId)
+            fetch("/addLike", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": "{{csrf_token }}"
+                },
+                body: `postId=${postId}`
+            }).then(data => data.json()).then((res) => {
+                console.log(res)
+                likeCount[index].innerHTML = res.numberOfLike
+                if (res.liked) {
+
+                    elem.innerHTML = "&#10084;"
+                }
+                else {
+                    elem.innerHTML = "&#9825;"
+                }
+            }).catch(err => console.log(err))
+        })
+    })
+
+    const addLike = (postId) => {
+        console.log(postId)
+
+    }
+</script>
+{% endblock %}

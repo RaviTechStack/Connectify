@@ -1,0 +1,47 @@
+main{
+    width: 80%;
+    height: 92vh;
+    overflow-y: scroll;
+    padding-top: .6rem;
+}
+.createPost form{
+    width: 100%;
+    height: 100%;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.preview{
+    width: 80%;
+    height: fit-content;
+    border: 2px dashed black;
+}
+.preview img{
+    width: 100%;
+    height: 100%;
+}
+input[type="file"]{
+    display: none;
+}
+.postButton{
+    padding: .5rem 1.5rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1.3rem;
+    border: none;
+    outline: none;
+}
+.caption{
+    width: 80%;
+    height: 20vh;
+}
+.caption textarea{
+    width: 100%;
+}
+.yellow{
+    background-color: rgb(255, 174, 0);
+}
+
+.blue{
+    background-color: blue;
+}
